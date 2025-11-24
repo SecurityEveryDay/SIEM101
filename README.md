@@ -7,8 +7,8 @@ Aqui você encontrará recursos complementares para acompanhar as aulas e realiz
 
 ### 📚 Mais conteúdos da SecDay
 
-* Acesse o treinamento completo e outros cursos em:
-  👉 **[https://academy.secday.com.br/](https://academy.secday.com.br/)**
-  
-* Confira conteúdos gratuitos, lives e demonstrações no YouTube:
-  👉 **[https://www.youtube.com/@secday](https://www.youtube.com/@secday)**
+* Acesse o treinamento completo e outros cursos em:  
+  👉 <a href="https://academy.secday.com.br/" target="_blank">https://academy.secday.com.br/</a>
+
+* Confira conteúdos gratuitos, lives e demonstrações no YouTube:  
+  👉 <a href="https://www.youtube.com/@secday" target="_blank">https://www.youtube.com/@secday</a>
