@@ -5,8 +5,11 @@ Vagrant.configure("2") do |config|
   config.vm.define "ubuntu" do |ubuntu|
     ubuntu.vm.box = "SecDay/ubuntu"
     ubuntu.vm.hostname = "ubuntu.local"
+    ubuntu.vm.box_version = "1.0.0"
     ubuntu.vm.network "private_network", ip: IP_BASE + "10"
     ubuntu.vm.network "forwarded_port", guest: 22, host: 2221, protocol: "tcp", auto_correct: true
+    ubuntu.vm.provision "shell",
+      inline: "apt-get update && apt-get install virtualbox-guest-additions-iso -y && reboot"
 
     ubuntu.vm.provider "virtualbox" do |vb|
       vb.memory = 1024
