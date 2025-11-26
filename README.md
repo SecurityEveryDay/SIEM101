@@ -7,7 +7,7 @@ Aqui você encontrará recursos complementares para acompanhar as aulas e realiz
 
 ### Passos
 
-1. Baixar o arquivo Vagrantfile
+1. Baixar o arquivo `Vagrantfile`
 2. No mesmo diretorio em que se encontra o Vagrantfile, execute o comando `vagrant up`
 
 Os passos acima faram com que uma VM `Ubuntu` e `Windows Server 2022` serem criadas no `VirtualBox`.
