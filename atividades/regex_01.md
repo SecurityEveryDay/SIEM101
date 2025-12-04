@@ -1,6 +1,4 @@
-
-
-## 📝 Texto para os exercícios de Regex 
+## 📝 Texto para os exercícios de Regex
 
 Use o texto abaixo **como está**, copiando para o editor de regex:
 
@@ -14,7 +12,11 @@ Embora o preço da vitória tenha sido alto, essa batalha abriu caminho para des
 
 Depois, a chegada de Vegeta e Nappa colocou os Guerreiros Z à prova. 
 Mesmo com perdas dolorosas, como a morte de alguns amigos, o grupo continuou treinando. 
+Vegeta ajustou seu Scouter várias vezes para medir o poder de luta de Goku e dos outros Guerreiros Z, surpreso com o crescimento constante de todos.
 A ideia de superar limites se tornou quase uma regra: lutar, cair, aprender e levantar de novo.
+
+Na Capsule Corp, Bulma configurou um servidor com nome de host capsulecorp.local e criou o usuário goku.ssj para que Goku pudesse acessar os relatórios de batalha remotamente. 
+O acesso era feito a partir do IP 192.168.0.42, e os relatórios mais importantes eram enviados por e-mail para o endereço guerreiro.z@capsulecorp.com, que era lido por toda a equipe dos Guerreiros Z.
 
 A viagem até Namekusei mudou completamente o rumo da história. 
 Lá, em busca das esferas do dragão, os heróis encontraram o tirano Freeza, um inimigo capaz de destruir planetas sem esforço. 
@@ -30,218 +32,251 @@ Em vários momentos, a amizade vence o medo, e a esperança fala mais alto que o
 Em um torneio de artes marciais, Goku fez um teste curioso: escreveu em um papel "luta luta" apenas para brincar com os amigos. 
 Também comentou que já gastou mais de $1000 em roupas de treino e equipamentos ao longo da vida. 
 No fim do dia, após mais um treinamento pesado, ele apenas sorriu e disse: "Treino concluído OK".
-
 ```
 
 ---
 
-## 📌 Exercícios de Regex (um para cada metacaractere)
+## 📌 Exercícios de Regex (combinando metacaracteres)
 
 Cada exercício deve ser resolvido **criando uma regex** que funcione sobre o texto acima.
+Use apenas os metacaracteres mostrados nas tabelas: `. [] [^ ] ? * + {n,m} ^ $ \b \$ | (...) \1` e as sequências `\d \D \w \W \s \S \b \B \n \t \r`.
 
 ---
 
-### 1. Ponto – `.`
+### 1. Ponto – `.` + Chaves – `{n,m}` + Borda – `\b`
 
-Crie uma regex que encontre qualquer palavra que comece com `Go` e tenha **quatro letras**, como “Goku” e “Gohan”, usando o ponto para representar caracteres variando no final.
-<details> <summary>Resposta</summary>
-  
+Crie uma regex que encontre palavras que começam com `Go` e tenham **entre 4 e 5 letras** (como “Goku” e “Gohan”), usando o ponto como coringa, chaves para a quantidade e bordas de palavra.
+
+<details><summary>Resposta</summary>
+
 **Resposta (regex):**
+
 ```regex
-\bGo..\w*\b
+\bGo.{2,3}\b
 ```
 
 </details>
 
 ---
 
-### 2. Lista – `[ABC]`
+### 2. Lista – `[ABC]` + Palavra – `\w` + Quantificador – `+`
 
-Crie uma regex que encontre todas as palavras do texto que **começam com as letras G, P ou V** (por exemplo, Goku, Gohan, Piccolo, Vegeta), usando uma lista de caracteres entre colchetes.
-<details> <summary>Resposta</summary>
-  
+Crie uma regex que encontre todas as palavras do texto que **começam com as letras G, P ou V** (por exemplo, Goku, Gohan, Piccolo, Vegeta), usando uma lista de caracteres, `\w` e `+` para pegar o restante da palavra.
+
+<details><summary>Resposta</summary>
+
 **Resposta (regex):**
 
 ```regex
-\b[GPV][a-zA-Z]+\b
+\b[GPV]\w+\b
 ```
+
 </details>
+
 ---
 
-### 3. Lista negada – `[^ABC]`
+### 3. Lista negada – `[^ABC]` + Quantificador – `*` + Palavra – `\w`
 
-Crie uma regex que encontre todas as **vogais que não sejam “a”** imediatamente após a letra `S` em qualquer palavra (por exemplo, em “Saiyajin”), usando uma lista negada.
+Crie uma regex que encontre todas as palavras que começam com `S` e cuja **segunda letra não é vogal** (ou seja, não é `a`, `e`, `i`, `o` ou `u`), usando uma lista negada e completando com o restante da palavra.
 
-<details> <summary>Resposta</summary>
-  
+<details><summary>Resposta</summary>
+
 **Resposta (regex):**
 
 ```regex
-S[^aA]
+\bS[^aeiouAEIOU]\w*\b
 ```
+
 </details>
+
 ---
 
-### 4. Opcional – `?`
+### 4. Opcional – `?` + Borda – `\b`
 
-No texto aparecem as palavras “Saiyajin” e “Saiyajins” (se quiser, acrescente “Saiyajins” manualmente em algum ponto).
-Crie uma regex que case **tanto o singular quanto o plural** com uma única expressão, usando um trecho opcional.
+No texto aparecem as palavras “Saiyajin” e, se você quiser, pode acrescentar manualmente “Saiyajins”.
+Crie uma regex que case **tanto o singular quanto o plural**, usando um trecho opcional e bordas de palavra.
 
-<details> <summary>Resposta</summary>
-  
+<details><summary>Resposta</summary>
+
 **Resposta (regex):**
 
 ```regex
-Saiyajins?
+\bSaiyajins?\b
 ```
+
 </details>
+
 ---
 
-### 5. Asterisco – `*`
+### 5. Asterisco – `*` + Espaço – `\s` + Âncora de linha – `^`
 
-Crie uma regex que encontre sequências que começam com a letra `S` seguida de **zero ou mais vogais**.
-Use-a para localizar padrões como parte de “Sala”, “Super” etc.
+Crie uma regex que encontre linhas que possam ter **zero ou mais espaços no início** antes da palavra `Goku`, combinando `^`, `\s*` e a palavra.
 
-<details> <summary>Resposta</summary>
-  
+<details><summary>Resposta</summary>
+
 **Resposta (regex):**
 
 ```regex
-S[aeiouAEIOU]*
+^\s*Goku
 ```
+
 </details>
+
 ---
 
-### 6. Mais – `+`
+### 6. Mais – `+` + Dígito – `\d` + Borda – `\b`
 
-Crie uma regex que encontre todas as sequências de **um ou mais dígitos** no texto (por exemplo, `1000`, `1` em “um dia”).
-Use o `+` para indicar “um ou mais”.
-<details> <summary>Resposta</summary>
-  
+Crie uma regex que encontre todas as sequências de **um ou mais dígitos** no texto (por exemplo, `1000`, `192`, `42`), usando `\d+` e bordas de palavra.
+
+<details><summary>Resposta</summary>
+
 **Resposta (regex):**
 
 ```regex
-\d+
+\b\d+\b
 ```
+
 </details>
+
 ---
 
-### 7. Chaves – `{n,m}`
+### 7. Chaves – `{n,m}` + Grupo – `(...)` + Dígitos – `\d` + Ponto – `.`
 
-Crie uma regex que encontre números com **exatamente 4 dígitos**, como `1000`, utilizando chaves para definir a quantidade exata de dígitos.
-<details> <summary>Resposta</summary>
-  
+Crie uma regex que encontre o **endereço IP** presente no texto (formato IPv4), usando grupos, chaves e dígitos.
+
+<details><summary>Resposta</summary>
+
 **Resposta (regex):**
 
 ```regex
-\b\d{4}\b
+\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b
 ```
+
 </details>
+
 ---
 
-### 8. Circunflexo – `^`
+### 8. Circunflexo – `^` + OU – `|` + Grupo – `(...)`
 
-Considerando cada linha como uma unidade, crie uma regex que encontre todas as linhas que **começam** com a palavra “Goku” ou “Quando”.
-Use o circunflexo para indicar início de linha.
-<details> <summary>Resposta</summary>
-  
+Considerando cada linha como uma unidade, crie uma regex que encontre todas as linhas que **começam** com a palavra “Goku” ou “Quando”, combinando âncora de início de linha com grupo e `|`.
+
+<details><summary>Resposta</summary>
+
 **Resposta (regex):**
 
 ```regex
 ^(Goku|Quando)
 ```
 
+> Lembre de ativar o *multiline* (`m`) no motor de regex.
+
 </details>
 
 ---
 
-### 9. Cifrão – `$`
+### 9. Cifrão – `$` + Borda – `\b` + Ponto – `.` + Opcional – `?`
 
-Crie uma regex que encontre a ultima palavra do texto:
-Use o cifrão para ancorar o final da linha.
-<details> <summary>Resposta</summary>
-  
+Crie uma regex que encontre a **última palavra do texto** (no caso, `OK`, que aparece antes das aspas e do ponto final), usando borda de palavra e âncora de fim de linha.
+
+<details><summary>Resposta</summary>
+
 **Resposta (regex):**
 
 ```regex
-\w+.$
+\b\w+\b"?\.$
 ```
+
 </details>
+
 ---
 
-### 10. Borda de palavra – `\b`
+### 10. Borda de palavra – `\b` + OU – `|`
 
-Crie uma regex que encontre a palavra **“Freeza” apenas quando ela aparecer inteira**, sem pegar partes de outras palavras.
-Use `\b` para garantir o limite de palavra.
-<details> <summary>Resposta</summary>
-  
+Crie uma regex que encontre a palavra **“Freeza” apenas quando ela aparecer inteira**, e, além disso, também aceite “Guerreiros” quando aparecer como palavra isolada, usando bordas de palavra e alternância.
+
+<details><summary>Resposta</summary>
+
 **Resposta (regex):**
 
 ```regex
-\bFreeza\b
+\b(Freeza|Guerreiros)\b
 ```
+
 </details>
+
 ---
 
-### 11. Escape – `\$`
+### 11. Escape – `\$` + Dígito – `\d` + Quantificador – `+`
 
 No texto há um valor monetário com o símbolo `$`.
-Crie uma regex que encontre todos os valores que começam com o caractere `$` seguido de um ou mais dígitos, usando o escape para tratar o `$` como literal.
-<details> <summary>Resposta</summary>
-  
+Crie uma regex que encontre todos os valores que começam com o caractere `$` seguido de **um ou mais dígitos**, usando o escape com `\$`, `\d` e `+`.
+
+<details><summary>Resposta</summary>
+
 **Resposta (regex):**
 
 ```regex
 \$\d+
 ```
+
 </details>
+
 ---
 
-### 12. OU – `|`
+### 12. OU – `|` + Grupo – `(...)` + Borda – `\b`
 
-Crie uma regex que encontre **qualquer ocorrência** de “Goku” ou “Vegeta” ou “Gohan” no texto usando o operador de alternância (OU).
-<details> <summary>Resposta</summary>
-  
+Crie uma regex que encontre **qualquer ocorrência** de “Goku”, “Vegeta” ou “Gohan” no texto, garantindo que sejam palavras completas, usando grupo, alternância e borda de palavra.
+
+<details><summary>Resposta</summary>
+
 **Resposta (regex):**
 
 ```regex
 \b(Goku|Vegeta|Gohan)\b
 ```
+
 </details>
+
 ---
 
-### 13. Grupo – `(...)`
-<details> <summary>Resposta</summary>
-  
-Crie uma regex que coloque em **grupo de captura** o nome e o sobrenome em “Trunks do Futuro”, capturando separadamente:
+### 13. Grupo – `(...)` + Espaço em branco – `\s+`
+
+Crie uma regex que coloque em **grupos de captura** o nome e a expressão em “Trunks do Futuro”, capturando separadamente:
 
 * o nome “Trunks”
 * a expressão “do Futuro”
 
-Use parênteses para delimitar grupos.
+Use parênteses para delimitar grupos e `\s+` para o espaço entre eles.
+
+<details><summary>Resposta</summary>
 
 **Resposta (regex):**
 
 ```regex
 (Trunks)\s+(do Futuro)
 ```
+
 </details>
+
 ---
 
-### 14. Retrovisor – `\1`
+### 14. Retrovisor – `\1` + Grupo – `(...)` + Espaço – `\s+` + Borda – `\b`
 
 No texto há a expressão “luta luta”.
 Crie uma regex que encontre **qualquer palavra repetida duas vezes seguidas**, como “luta luta”, usando:
 
-* um grupo para capturar a primeira palavra
-* um retrovisor (`\1`) para casar a repetição.
-<details> <summary>Resposta</summary>
-  
+* um grupo para capturar a primeira palavra;
+* um retrovisor (`\1`) para casar a repetição;
+* `\s+` para o espaço entre elas.
+
+<details><summary>Resposta</summary>
+
 **Resposta (regex):**
 
 ```regex
 \b(\w+)\s+\1\b
 ```
-</details>
----
 
+</details>
+
+---
