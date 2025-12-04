@@ -1,5 +1,7 @@
 ## 📝 Texto para os exercícios de Regex
 
+**Utilize o site https://regex101.com/ para testar e validar suas expressões regulares**
+
 Use o texto abaixo **como está**, copiando para o editor de regex:
 
 ```text
