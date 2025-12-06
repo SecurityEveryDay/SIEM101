@@ -8,12 +8,14 @@ Vagrant.configure("2") do |config|
     ubuntu.vm.box_version = "1.0.0"
     ubuntu.vm.network "private_network", ip: IP_BASE + "10"
     ubuntu.vm.network "forwarded_port", guest: 22, host: 2221, protocol: "tcp", auto_correct: true
+    ubuntu.ssh.username = "vagrant"
+    ubuntu.ssh.password = "vagrant"
     ubuntu.vm.provision "shell",
       inline: "apt-get update && apt-get install virtualbox-guest-additions-iso -y && reboot"
 
     ubuntu.vm.provider "virtualbox" do |vb|
-      vb.memory = 1024
-      vb.cpus   = 1
+      vb.memory = 2048
+      vb.cpus   = 2
       vb.name   = "Ubuntu-SecDay"
       vb.customize ["modifyvm", :id, "--groups", GRUPO_VBOX]
     end
@@ -28,7 +30,7 @@ Vagrant.configure("2") do |config|
     windows_2022.vm.communicator = "winrm"
 
     windows_2022.vm.provider "virtualbox" do |vb|
-      vb.memory = 4096
+      vb.memory = 2048
       vb.cpus   = 2
       vb.name   = "windows_2022-SecDay"
       vb.customize ["modifyvm", :id, "--groups", GRUPO_VBOX]
