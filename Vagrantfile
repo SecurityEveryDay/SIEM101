@@ -2,6 +2,10 @@ Vagrant.configure("2") do |config|
   GRUPO_VBOX = "/secday"
   IP_BASE = "192.168.56."
 
+  if Vagrant.has_plugin?("vagrant-vbguest")
+    config.vbguest.no_install = true
+  end
+
   config.vm.define "ubuntu" do |ubuntu|
     ubuntu.vm.box = "SecDay/ubuntu"
     ubuntu.vm.hostname = "ubuntu.local"
@@ -11,7 +15,7 @@ Vagrant.configure("2") do |config|
     ubuntu.ssh.username = "vagrant"
     ubuntu.ssh.password = "vagrant"
     ubuntu.vm.provision "shell",
-      inline: "apt-get update && apt-get install virtualbox-guest-additions-iso -y && reboot"
+      inline: "apt-get update && apt-get install virtualbox-guest-additions-iso -y && sudo apt install python3-pip -y"
 
     ubuntu.vm.provider "virtualbox" do |vb|
       vb.memory = 2048
