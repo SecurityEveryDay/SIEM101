@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "ubuntu" do |ubuntu|
     ubuntu.vm.box = "SecDay/ubuntu"
     ubuntu.vm.hostname = "ubuntu.local"
-    ubuntu.vm.box_version = "1.0.0"
+    ubuntu.vm.box_version = "1.0.1"
     ubuntu.vm.network "private_network", ip: IP_BASE + "10"
     ubuntu.vm.network "forwarded_port", guest: 22, host: 2221, protocol: "tcp", auto_correct: true
     ubuntu.ssh.username = "vagrant"
