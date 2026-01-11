@@ -27,6 +27,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "windows_2022" do |windows_2022|
     windows_2022.vm.box      = "SecDay/windows_2022"
+    windows_2022.vm.box_version = "1.0.0"
     windows_2022.vm.hostname = "windows2022"
     windows_2022.vm.network "private_network", ip: IP_BASE + "11"
     windows_2022.winrm.timeout = 600
